@@ -18,6 +18,7 @@ services:
       - db_our_task
     volumes:
       - ./backend:/app
-  
+    
+
 volumes:
   db_our_task_data:
