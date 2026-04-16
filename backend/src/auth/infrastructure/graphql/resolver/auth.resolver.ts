@@ -32,7 +32,7 @@ export class AuthResolver {
     };
   }
 
-@Mutation(() => AuthResponse)
+@Mutation(() => AuthResponse, {name: 'register'})
 async register(@Args('input') input: RegisterInput): Promise<AuthResponse> {
   return this.registerService.execute(input);
 }

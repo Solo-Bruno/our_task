@@ -12,6 +12,9 @@ import { LoginService } from './application/services/login.service';
 import { AuthResolver } from './infrastructure/graphql/resolver/auth.resolver';
 import { UserRepositoryInterface } from '../user/domain/repositories/user.repository.interface';
 import { TypeOrmUserRepository } from '../user/infrastructure/persistence/typeorm/repositories/typeorm-user.repository';
+import { RolOrmEntity } from '../user/infrastructure/persistence/typeorm/entities/rol.orm-entity';
+import { PermissionOrmEntity } from '../user/infrastructure/persistence/typeorm/entities/permission.orm-entity';
+import { RegisterService } from './application/services/registrer.service';
 
 @Module({
   imports: [
@@ -27,13 +30,14 @@ import { TypeOrmUserRepository } from '../user/infrastructure/persistence/typeor
         },
       }),
     }),
-    TypeOrmModule.forFeature([UserOrmEntity]),
+    TypeOrmModule.forFeature([UserOrmEntity, RolOrmEntity, PermissionOrmEntity]),
   ],
 
   providers: [
     JwtStrategy,
     JwtAuthGuard,
     PermissionsGuard,
+    RegisterService,
     LoginService,
     AuthResolver,
     {
