@@ -32,7 +32,7 @@ const folders = [
 const files = {
   // --- DOMINIO ---
   [`domain/entities/${moduleName}.entity.ts`]: `export class ${pascalName}Entity {\n  id: string;\n}\n`,
-  [`domain/repositories/${moduleName}.repository.interface.ts`]: `import { ${pascalName}Entity } from '../entities/${moduleName}.entity';\n\nexport interface ${pascalName}RepositoryInterface {\n  // Define tus métodos aquí, ej: create(data: ${pascalName}Entity): Promise<${pascalName}Entity>;\n}\n`,
+  [`domain/repositories/${moduleName}.repository.interface.ts`]: `import { ${pascalName}Entity } from '../entities/${moduleName}.entity';\n\nexport abstract class ${pascalName}RepositoryInterface {\n  // Define tus métodos aquí, ej: create(data: ${pascalName}Entity): Promise<${pascalName}Entity>;\n}\n`,
 
   // --- APLICACIÓN ---
   [`application/dto/create-${moduleName}.input.ts`]: `import { InputType, Field } from '@nestjs/graphql';\n\n@InputType()\nexport class Create${pascalName}Input {\n  @Field()\n  // name: string;\n}\n`,

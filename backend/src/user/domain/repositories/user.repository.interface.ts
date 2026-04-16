@@ -1,5 +1,22 @@
 import { UserEntity } from '../entities/user.entity';
 
-export interface UserRepositoryInterface {
-  // Define tus métodos aquí, ej: create(data: UserEntity): Promise<UserEntity>;
+export abstract class UserRepositoryInterface {
+    abstract findByEmailWithRol(email: string): Promise<UserWithRol | null>;
+    abstract findByIdWithRol(id: string): Promise<UserWithRol | null>;   
+}
+
+export interface UserWithRol {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  rol?: {
+    id: string;
+    name: string;
+    permissions?: {
+      id: string;
+      name: string;
+      description: string;
+    }[];
+  };
 }
