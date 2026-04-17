@@ -10,6 +10,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config/dist/config.service';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { EpochModule } from './epoch/epoch.module';
+import { TaskModule } from './task/task.module';
+import { StateModule } from './state/state.module';
+import { ProjectModule } from './project/project.module';
 
 @Module({
   imports: [
@@ -31,14 +35,19 @@ import { AuthModule } from './auth/auth.module';
         username: configService.get('POSTGRES_USER'),
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
-        migrations: [__dirname + '/migrations/*{.ts,.js}'],
-        synchronize: false,
+        //migrations: [__dirname + '/migrations/*{.ts,.js}'],
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        synchronize: true,
         autoLoadEntities: true,
       }),
       inject: [ConfigService],
     }),
     UserModule,
     AuthModule,
+    ProjectModule,
+    EpochModule,
+    StateModule,
+    TaskModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],

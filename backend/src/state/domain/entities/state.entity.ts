@@ -1,12 +1,9 @@
 import { TaskEntity } from "../../../task/domain/entities/task.entity";
-import { RolEntity } from "./rol.entity";
 
-export class UserEntity {
+export class StateEntity {
   id: string;
   name: string;
-  email: string;
-  password: string;
 
-  rol?: RolEntity;
+  epochId: string;
   tasks?: TaskEntity[];
 }

@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { PermissionOrmEntity } from "./permission.orm-entity";
 import { UserOrmEntity } from "./user.orm-entity";
 
@@ -11,7 +11,7 @@ export class RolOrmEntity {
     name: string;
 
     @ManyToMany(() => PermissionOrmEntity, (permission) => permission.roles)
-    @JoinColumn({name: 'roles_permissions'})
+    @JoinTable({ name: 'roles_permissions' })
     permissions?: PermissionOrmEntity[];
 
     @OneToMany(() => UserOrmEntity, (user) => user.rol)
