@@ -24,6 +24,18 @@ services:
         condition: service_healthy
     volumes:
       - ./backend:/app
+  frontend:
+    build: ./frontend
+    env_file:
+      - .env
+    ports:
+      - "5173:5173"
+    depends_on:
+      backend:
+        condition: service_started
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
 
 
 volumes:
